@@ -3,6 +3,7 @@ class CreatePraias < ActiveRecord::Migration[5.1]
     create_table :praia do |t|
       t.column :name, :string, :limit => 32, :null => false
       t.column :location, :string, :limit => 32, :null => false
+      t.column :distrito, :string, :limit => 32, :null => false
     end
 
     create_table :clientes_praias, id: false do |t|
