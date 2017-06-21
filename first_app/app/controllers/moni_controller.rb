@@ -1,4 +1,4 @@
 class MoniController < ApplicationController
-  def monitorizaÇõao
+  def monitorizacao
   end
 end

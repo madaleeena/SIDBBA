@@ -8,10 +8,12 @@
           <div class="col-sm-12">
             <nav class="top-header-menu">
               <ul class="top-menu">
-                <li><a href="#">Login</a></li>
-
-                </li>
-
+                <% if session[:user_id] == nil %>
+                    <li><a href="/perfil_utilizador/login">Login</a></li>
+                    <li><a href="/perfil_utilizador/register">Registar</a></li>
+                <% else %>
+                    <li><a href="/perfil_utilizador/register">Meu Perfil</a></li>
+                <% end %>
               </ul>
             </nav>
           </div>
@@ -23,7 +25,7 @@
         <div class="navbar-inner">
           <div class="navbar-header text-sm-center">
             <!-- Navbar brand -->
-            <a class="navbar-brand pull-left" href="/homepage/home" title="Boomerang 2 | One template. Infinite solutions">
+            <a class="navbar-brand pull-left" href="index.html" title="Boomerang 2 | One template. Infinite solutions">
               <img id="desktopLogo" src="/assets/Logo2.png" style= "width:130px">
               <img id="mobileLogo" src="../images/boomerang-logo-black.png" alt="Boomerang 2 | One template. Infinite solutions">
             </a>

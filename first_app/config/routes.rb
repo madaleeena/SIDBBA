@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  get 'perfil_utilizador/login'
+
+  get 'perfil_utilizador/register'
+
+  get 'perfil_utilizador/user'
+
   get 'moni/monitorizacao'
 
   get 'sobre/sobre_nos'
