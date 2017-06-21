@@ -24,9 +24,19 @@ h2{
    text-align: center;
 }
 
+#myimage {
+    filter: brightness(50%);
+}
+
 </style>
 <div class="image">
 
-  <img style="width: 100%;"src="/assets/Marinha_1.jpg"/>
+  <!--<img style="width: 100%;"src="/assets/Marinha_1.jpg"/>-->
 
+<h2>Loop from 0 to 5:
+<% for i in (0..(@cenas.size-1)) %>
+<%= @cenas[i].name %>
+<% end %>
+</h2>
+<img id="myimage" style="width: 100%;"src="/assets/Marinha_1.jpg"/>
 </div>

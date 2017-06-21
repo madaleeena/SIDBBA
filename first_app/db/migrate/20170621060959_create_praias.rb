@@ -1,6 +1,6 @@
 class CreatePraias < ActiveRecord::Migration[5.1]
   def change
-    create_table :praias do |t|
+    create_table :praia do |t|
       t.column :name, :string, :limit => 32, :null => false
       t.column :location, :string, :limit => 32, :null => false
     end

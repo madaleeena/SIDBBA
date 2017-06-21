@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170621061234) do
     t.index ["leitura_id"], name: "index_luminosidades_on_leitura_id"
   end
 
-  create_table "praias", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "praia", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 32, null: false
     t.string "location", limit: 32, null: false
   end
