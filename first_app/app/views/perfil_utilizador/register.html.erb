@@ -18,7 +18,8 @@
                                 <h2>Crie a sua conta</h2>
                             </div>
                             <div class="form-body">
-                                <form action="" id="frmRegister" class="sky-form">                                    
+                                <form accept-charset="UTF-8" action="" class="sky-form" method="post">     
+                                    <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                               
                                     <fieldset class="no-padding">           
                                         <section>
                                             <div class="row">
@@ -27,7 +28,7 @@
                                                         <label class="label">Nome Utilizador</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-user"></i>
-                                                            <input type="text" name="username" placeholder="">
+                                                            <input type="text" name="cliente[username]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                                         </label>
                                                     </div>               
@@ -38,7 +39,7 @@
                                                             <label class="label">E-mail</label>
                                                             <label class="input">
                                                                 <i class="icon-append fa fa-envelope-o"></i>
-                                                                <input type="email" name="email" placeholder="">
+                                                                <input type="email" name="cliente[email]" placeholder="">
                                                                 <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
                                                             </label>
                                                         </div>  
@@ -51,7 +52,7 @@
                                                         <label class="label">Password</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-lock"></i>
-                                                            <input type="text" name="username" placeholder="">
+                                                            <input type="password" name="cliente[pass]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                                         </label>
                                                     </div>               
@@ -61,7 +62,7 @@
                                                         <label class="label">Password</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-lock"></i>
-                                                            <input type="email" name="email" placeholder="">
+                                                            <input type="password" name="cliente[pass]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
                                                         </label>
                                                     </div>               
@@ -75,14 +76,7 @@
                                                     <label class="label">Primeiro Nome</label>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="fname" placeholder="">
-                                                    </label>
-                                                </section>
-                                                <section class="col-xs-6">
-                                                    <label class="label">Ultimo Nome</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="lname" placeholder="">
+                                                        <input type="text" name="cliente[name]" placeholder="">
                                                     </label>
                                                 </section>
                                             </div> 
@@ -91,38 +85,6 @@
                                     </fieldset>  
 
                                     <fieldset>
-                                        <div class="row">
-                                            <section class="col-xs-5">
-                                                <label class="label">Pais</label>
-                                                    <label class="input">
-                                                        <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="lname" placeholder="">
-                                            </section>
-                                            
-                                            <section class="col-xs-4">
-                                                <label class="input">
-                                                    <input type="text" name="city" placeholder="Cidade">
-                                                </label>
-                                            </section>
-                                            
-                                            <section class="col-xs-3">
-                                                <label class="input">
-                                                    <input type="text" name="code" placeholder="Código Postal">
-                                                </label>
-                                            </section>
-                                        </div>
-                                        
-                                        <section>
-                                            <label for="file" class="input">
-                                                <input type="text" name="address" placeholder="Morada">
-                                            </label>
-                                        </section>
-                                        
-                                        <section>
-                                            <label class="textarea">
-                                                <textarea rows="3" name="info" placeholder="Informação Adicional"></textarea>
-                                            </label>
-                                        </section>
                                         <section>
                                             <div class="row">
                                                 <div class="col-md-8">
