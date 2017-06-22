@@ -1,17 +1,19 @@
+<div class="body-wrap">
+   <div class="pg-opt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2><%=@user.nome%></h2>
+                </div>
+            </div>
+        </div>
+        </div>
+
   <section class="slice bg-white">
         <div class="wp-section user-account">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="user-profile-img">
-
-                            <img src="@controllers.common.routes.Assets.at("images/users/"+ user.getImagem)" alt=NOME >
-
-                        </div>
-                        <h3 align="center" class="title title-lg"><%=@user.nome%></h3>
-                       
-                    </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="tabs-framed">
                             <ul class="tabs clearfix">
                             	 <li class="active"><a href="#tab-1" data-toggle="tab">Praias Favoritas</a></li>
@@ -40,7 +42,7 @@
                                                             <td><%= @praia[i].location %></td>
                                                             <td></td>
                                                             <td>
-                                                                <a href="#" class="btn btn-xs btn-base btn-icon fa-edit "><span>Ver Praia</span></a>
+                                                                <a href="#" class="btn btn-xs btn-base"><span>Ver Praia</span></a>
                                                             </td>
                                                         </tr>
                                                     <% end %>
@@ -87,3 +89,4 @@
             </div>
         </div>
     </section>
+</div>
