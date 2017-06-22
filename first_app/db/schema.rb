@@ -10,56 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170621061234) do
+ActiveRecord::Schema.define(version: 20170621231817) do
 
-  create_table "cliente", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "distritos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "descricao"
+  end
+
+  create_table "humidades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "leituras_id"
+    t.float "valor", limit: 24
+    t.index ["leituras_id"], name: "index_humidades_on_leituras_id"
+  end
+
+  create_table "leituras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "praias_id"
+    t.timestamp "data"
+    t.index ["praias_id"], name: "index_leituras_on_praias_id"
+  end
+
+  create_table "luminosidades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "leituras_id"
+    t.float "valor", limit: 24
+    t.index ["leituras_id"], name: "index_luminosidades_on_leituras_id"
+  end
+
+  create_table "praias", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "distritos_id"
+    t.string "name", limit: 32, null: false
+    t.string "location", limit: 32, null: false
+    t.index ["distritos_id"], name: "index_praias_on_distritos_id"
+  end
+
+  create_table "pressaos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "leituras_id"
+    t.float "valor", limit: 24
+    t.index ["leituras_id"], name: "index_pressaos_on_leituras_id"
+  end
+
+  create_table "temperaturas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "leituras_id"
+    t.float "valor", limit: 24
+    t.index ["leituras_id"], name: "index_temperaturas_on_leituras_id"
+  end
+
+  create_table "utilizador_praia", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "utilizadors_id"
+    t.bigint "praias_id"
+    t.index ["praias_id"], name: "index_utilizador_praia_on_praias_id"
+    t.index ["utilizadors_id"], name: "index_utilizador_praia_on_utilizadors_id"
+  end
+
+  create_table "utilizadors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nomeutilizador", limit: 32, null: false
     t.string "email", limit: 100, null: false
     t.string "nome", limit: 50, null: false
-    t.string "passe", limit: 20, null: false
-  end
-
-  create_table "clientes_praias", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "cliente_id"
-    t.bigint "praia_id"
-    t.index ["cliente_id"], name: "index_clientes_praias_on_cliente_id"
-    t.index ["praia_id"], name: "index_clientes_praias_on_praia_id"
-  end
-
-  create_table "humidade", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "leitura_id"
-    t.float "valor", limit: 24
-    t.index ["leitura_id"], name: "index_humidade_on_leitura_id"
-  end
-
-  create_table "leitura", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "praia_id"
-    t.timestamp "data"
-    t.index ["praia_id"], name: "index_leitura_on_praia_id"
-  end
-
-  create_table "luminosidade", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "leitura_id"
-    t.float "valor", limit: 24
-    t.index ["leitura_id"], name: "index_luminosidade_on_leitura_id"
-  end
-
-  create_table "praia", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name", limit: 32, null: false
-    t.string "location", limit: 32, null: false
-    t.string "distrito", limit: 32, null: false
-  end
-
-  create_table "pressao", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "leitura_id"
-    t.float "valor", limit: 24
-    t.index ["leitura_id"], name: "index_pressao_on_leitura_id"
-  end
-
-  create_table "temperatura", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "leitura_id"
-    t.float "valor", limit: 24
-    t.index ["leitura_id"], name: "index_temperatura_on_leitura_id"
+    t.string "password_digest", limit: 20, null: false
   end
 
 end
