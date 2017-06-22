@@ -8,11 +8,11 @@
           <div class="col-sm-12">
             <nav class="top-header-menu">
               <ul class="top-menu">
-                <% if session[:user_id] == nil %>
-                    <li><a href="/perfil_utilizador/login">Login</a></li>
-                    <li><a href="/perfil_utilizador/register">Registar</a></li>
+                <% if logged_in? %>
+                    <li><%= link_to "Meu Perfil", current_user %></li>
                 <% else %>
-                    <li><a href="/perfil_utilizador/register">Meu Perfil</a></li>
+                    <li><%= link_to "Login", login_path %></li>
+                    <li><%= link_to "Registar", signup_path %></li>
                 <% end %>
               </ul>
             </nav>

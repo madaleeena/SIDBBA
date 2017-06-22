@@ -18,7 +18,7 @@
                                 <h2>Crie a sua conta</h2>
                             </div>
                             <div class="form-body">
-                                <form accept-charset="UTF-8" action="" class="sky-form" method="post">     
+                                <form accept-charset="UTF-8" action="/users" class="sky-form" method="post">     
                                     <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>                               
                                     <fieldset class="no-padding">           
                                         <section>
@@ -28,7 +28,7 @@
                                                         <label class="label">Nome Utilizador</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-user"></i>
-                                                            <input type="text" name="cliente[username]" placeholder="">
+                                                            <input type="text" name="user[username]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                                         </label>
                                                     </div>               
@@ -39,7 +39,7 @@
                                                             <label class="label">E-mail</label>
                                                             <label class="input">
                                                                 <i class="icon-append fa fa-envelope-o"></i>
-                                                                <input type="email" name="cliente[email]" placeholder="">
+                                                                <input type="email" name="user[email]" placeholder="">
                                                                 <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
                                                             </label>
                                                         </div>  
@@ -52,7 +52,7 @@
                                                         <label class="label">Password</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-lock"></i>
-                                                            <input type="password" name="cliente[pass]" placeholder="">
+                                                            <input type="password" name="user[pass]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to enter the website</b>
                                                         </label>
                                                     </div>               
@@ -62,7 +62,7 @@
                                                         <label class="label">Password</label>
                                                         <label class="input">
                                                             <i class="icon-append fa fa-lock"></i>
-                                                            <input type="password" name="cliente[pass]" placeholder="">
+                                                            <input type="password" name="user[pass]" placeholder="">
                                                             <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
                                                         </label>
                                                     </div>               
@@ -76,7 +76,7 @@
                                                     <label class="label">Primeiro Nome</label>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-user"></i>
-                                                        <input type="text" name="cliente[name]" placeholder="">
+                                                        <input type="text" name="user[name]" placeholder="">
                                                     </label>
                                                 </section>
                                             </div> 
@@ -103,7 +103,7 @@
                                 </form>    
                             </div>
                             <div class="form-footer">
-                                <p>Já possui uma conta <a href="/perfil_utilizador/login">Clique aqui para efetuar Login</a></p>
+                                <p>Já possui uma conta <a href="/sessions/new">Clique aqui para efetuar Login</a></p>
                             </div>
                         </div>
                     </div>

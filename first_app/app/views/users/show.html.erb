@@ -8,7 +8,7 @@
                             <img src="@controllers.common.routes.Assets.at("images/users/"+ user.getImagem)" alt=NOME >
 
                         </div>
-                        <h3 align="center" class="title title-lg">NomeUtilizador</h3>
+                        <h3 align="center" class="title title-lg">@user.nome</h3>
                        
                     </div>
                     <div class="col-md-9">
@@ -58,38 +58,12 @@
                                             <dl class="dl-horizontal style-2">
                                                 <dt>Nome</dt>
                                                 <dd>
-                                                    <span class="pull-left">Nome</span>
-                                                </dd>
-                                                <hr>
-                                                <dt>Descrição</dt>
-                                                <dd>
-                                                    <span class="pull-left">Descri</span>
-                                                </dd>
-                                                <hr>
-                                                <dt>NIF</dt>
-                                                <dd>
-                                                    <span class="pull-left">NIF</span>
+                                                    <span class="pull-left">@user.nome</span>
                                                 </dd>
                                                 <hr>
                                                 <dt>Email</dt>
                                                 <dd>
-                                                    <span class="pull-left">MAIL</span>
-                                                </dd>
-                                                <hr>
-                                                <dt>Telémovel</dt>
-                                                <dd>
-                                                    <span class="pull-left">TELE</span>
-                                                </dd>
-                                                <hr>
-                                                <dt>Morada</dt>
-                                                <dd>
-                                                    <span class="pull-left">Morada</span>
-                                                    <span class="pull-left">MORADA</span>
-                                                </dd>
-                                                <hr>
-                                                <dt>Data de Nascimento</dt>
-                                                <dd>
-                                                    <span class="pull-left">DATQ</span>
+                                                    <span class="pull-left">@user.email</span>
                                                 </dd>
                                                 <hr>
                                             </dl>

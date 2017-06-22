@@ -1,4 +1,4 @@
-class CreateClientes < ActiveRecord::Migration[5.1]
+class CreateCliente < ActiveRecord::Migration[5.1]
   def change
     create_table :cliente do |t|
       t.column :nomeutilizador, :string, :limit => 32, :null => false
