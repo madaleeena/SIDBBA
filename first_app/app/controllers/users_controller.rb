@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @aux = Utilizador.find_by(email: params[:user][:email])
     @user = Utilizador.new(user_params)
     if @aux!=nil
-      flash[:danger] = 'O utilizador ja existe'
+      flash.now[:danger] = 'O utilizador já existe'
+      render 'new'
     elsif @user.save
         log_in @user
         redirect_to ("/users/" + @user.id.to_s)
