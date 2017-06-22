@@ -1,3 +1,3 @@
 class Pressao < ApplicationRecord
-	belongs_to :leitura
+	belongs_to :leituras
 end

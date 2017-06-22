@@ -15,37 +15,44 @@
                         <div class="tabs-framed">
                             <ul class="tabs clearfix">
                             	 <li class="active"><a href="#tab-1" data-toggle="tab">Praias Favoritas</a></li>
-                                <li><a href="#tab-2" data-toggle="tab">Definições</a></li>
+                                <li><a href="#tab-2" data-toggle="tab">Dados</a></li>
                                
                             </ul>
 
                             <div class="tab-content">
-                                <!-- Wishlist -->
+                                 <!-- Produtos -->
                                 <div class="tab-pane fade in active" id="tab-1">
-                                    <div class="tab-body">
-                                        <h2></h2>
-                                        <div class="row">
-                                                <!-- Product list -->
-                                          
-                                                <div class="col-md-4">
-                                                    <div class="wp-block product">
-                                                        <figure>
-                                                            <img alt="" src="http://hypescience.com/wp-content/uploads/2010/10/batatas.jpg" class="img-responsive img-center">
-                                                        </figure>
-                                                        <h2 class="product-title"><a href="#"</a></h2>
-                                                        <p>
-                                                        DescricaoProduto
-                                                        </p>
-                                                        <div class="wp-block-footer">
-                                                            <span class="price pull-left">Preco</span>
-                                                            <a href="/market/cart" class="btn btn-sm btn-base btn-icon btn-cart pull-right">
-                                                                <span>Comprar</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            
-                                        </div>
+                                    <div class="tab-body" style="padding-bottom: 0;">
+                                            <table class="table table-striped table-responsive no-margin ">
+                                                <tbody>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Nome</th>
+                                                        <th>Localização</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+
+                                                    <% for i in (0..(@praia.size-1)) %>
+                                                        <tr>
+                                                            <td class="remove-cell"><a href="" class="cart-remove pull-right" title="Remover"><i class="fa fa-times fa-2x" style="color:red"></i></a></td>
+                                                            <td><%= @praia[i].name %></a></td>
+                                                            <td><%= @praia[i].location %></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <a href="#" class="btn btn-xs btn-base btn-icon fa-edit "><span>Ver Praia</span></a>
+                                                            </td>
+                                                        </tr>
+                                                    <% end %>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        <% if @praia.size==0 %>
+                                            <div style="text-align: center">
+                                            <h5 style="margin-top:5px">Ainda não tem praias favoritas.</h5>
+                                            </div>
+                                        <% end %>
+                                        
                                     </div>
                                 </div>
                                 <!-- Definições -->
@@ -60,30 +67,23 @@
                                                 <dd>
                                                     <span class="pull-left"><%=@user.nome%></span>
                                                 </dd>
-                                                <hr>
                                                 <dt>Email</dt>
                                                 <dd>
                                                     <span class="pull-left"><%=@user.email%></span>
                                                 </dd>
-                                                <hr>
                                             </dl>
                                         </div>
 
                                        
                                         </div>
-                                        </div>
                                     </div>
                                 </div>
-
-
                             </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-
-            </div>
-        </section>
-
-}
-
+        </div>
+    </section>

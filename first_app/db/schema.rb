@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20170621231817) do
     t.index ["distritos_id"], name: "index_praias_on_distritos_id"
   end
 
+  create_table "praias_utilizadors", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "utilizador_id"
+    t.bigint "praia_id"
+    t.index ["praia_id"], name: "index_praias_utilizadors_on_praia_id"
+    t.index ["utilizador_id"], name: "index_praias_utilizadors_on_utilizador_id"
+  end
+
   create_table "pressaos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "leituras_id"
     t.float "valor", limit: 24
@@ -53,18 +60,11 @@ ActiveRecord::Schema.define(version: 20170621231817) do
     t.index ["leituras_id"], name: "index_temperaturas_on_leituras_id"
   end
 
-  create_table "utilizador_praia", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "utilizadors_id"
-    t.bigint "praias_id"
-    t.index ["praias_id"], name: "index_utilizador_praia_on_praias_id"
-    t.index ["utilizadors_id"], name: "index_utilizador_praia_on_utilizadors_id"
-  end
-
   create_table "utilizadors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nomeutilizador", limit: 32, null: false
     t.string "email", limit: 100, null: false
     t.string "nome", limit: 50, null: false
-    t.string "password_digest", limit: 20, null: false
+    t.string "password", limit: 20, null: false
   end
 
 end

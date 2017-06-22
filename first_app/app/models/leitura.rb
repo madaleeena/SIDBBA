@@ -1,7 +1,7 @@
 class Leitura < ApplicationRecord
-	has_one :temperatura
-	has_one :luminosidade
-	has_one :pressao
-	has_one :humidade
-	belongs_to :praia
+	has_one :temperaturas
+	has_one :luminosidades
+	has_one :pressaos
+	has_one :humidades
+	belongs_to :praias
 end

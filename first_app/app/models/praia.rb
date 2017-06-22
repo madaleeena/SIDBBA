@@ -1,5 +1,6 @@
 class Praia < ApplicationRecord
-	has_and_belongs_to_many :clientes
+	self.table_name = "praias"
+ 	has_and_belongs_to_many :utilizadors
 	has_many :leituras
-	belongs_to :distrito
+	belongs_to :distritos
 end
