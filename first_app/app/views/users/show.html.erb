@@ -8,7 +8,7 @@
                             <img src="@controllers.common.routes.Assets.at("images/users/"+ user.getImagem)" alt=NOME >
 
                         </div>
-                        <h3 align="center" class="title title-lg">@user.nome</h3>
+                        <h3 align="center" class="title title-lg"><%=@user.nome%></h3>
                        
                     </div>
                     <div class="col-md-9">
@@ -58,12 +58,12 @@
                                             <dl class="dl-horizontal style-2">
                                                 <dt>Nome</dt>
                                                 <dd>
-                                                    <span class="pull-left">@user.nome</span>
+                                                    <span class="pull-left"><%=@user.nome%></span>
                                                 </dd>
                                                 <hr>
                                                 <dt>Email</dt>
                                                 <dd>
-                                                    <span class="pull-left">@user.email</span>
+                                                    <span class="pull-left"><%=@user.email%></span>
                                                 </dd>
                                                 <hr>
                                             </dl>
