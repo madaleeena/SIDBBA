@@ -3,40 +3,182 @@
    position: relative; 
    width: 100%; /* for IE 6 */
 }
-
-h3{ 
-   position: absolute; 
-   top: 20%; 
-   left: 0; 
-   width: 100%; 
-   color: white;
-   font: bold 70px Helvetica, Sans-Serif; 
-   text-align: center;
-}
-
-h2{ 
-   position: absolute; 
-   top: 35%; 
-   left: 0; 
-   width: 100%; 
-   color: white;
-   font: bold 20px Helvetica, Sans-Serif; 
-   text-align: center;
-}
-
 #myimage {
+    width: 100%;
     filter: brightness(50%);
 }
 
+h2{
+   font-size: 10px; 
+}
+
+h3{
+  font-size: 15px; 
+}
+
+#lateral{
+  position: absolute; 
+   top: 20%; 
+   left: 7%; 
+    width: 350px;
+    float: right;
+    padding: 10px;
+    background-color: #dddddd;
+    margin: 20px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+}
+
+.datahora {
+  float: right;
+}
+
+.conj {
+  top: 10%; 
+  float:left;
+  width: 200px;
+}
+
+.modal {
+    position: absolute; 
+    top: 35%; 
+    left: 7%;
+    float: right;
+    z-index: 1; /* Sit on top */
+    width: 350px; /* Full width */
+    height: 260px; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    padding: 10px;
+    background-color: #dddddd;
+    margin: 20px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 </style>
+
+
 <div class="image">
 
-  <!--<img style="width: 100%;"src="/assets/Marinha_1.jpg"/>-->
+<img id="myimage" src="/assets/Marinha_1.jpg"/>
 
-<h2>Loop from 0 to 5:
-<% for i in (0..(@cenas.size-1)) %>
-<%= @cenas[i].name %>
-<% end %>
-</h2>
-<img id="myimage" style="width: 100%;"src="/assets/Marinha_1.jpg"/>
+
+<div id="lateral">
+  <fieldset id="endereco" class="conj"><legend>Lista de Praias</legend>
+    <p>
+      <label for="icid" class="labe">
+        <select name="nCid" id="iCid" >
+          <% @m.each do |i| %>
+              <%nome_destrito=@distritos[@a].descricao%>
+              <optgroup label=<%=nome_destrito%>>
+                <% i.each do |j| %>
+                    <option value=<%=j.id%>><%=j.name%></option>
+                <% end %>
+              </optgroup>
+              <%@a+=1%>
+          <% end %>
+        </select>
+      </label>
+    </p>
+  </fieldset>
+  <button id="myBtn" class="btn btn-alt">Leitura</button>
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <div id="info"></div>
+    <div id="horadata" class="datahora"></div>
+    <form  action="/favorito" class="sky-form" method= "post"> 
+      <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <fieldset> 
+              <section>
+                  <input class="hidden" type="text" name="moni[id]" id="fav" value="">   
+              </section>
+               <section>
+                    <button class="btn btn-alt" type="submit">
+                        <span>Favorito</span>
+                    </button>
+                </section>
+         </fieldset>
+ </form>
+    
+</div>
+
+<div id='map' style='width: 700px; height: 400px; position: absolute; top: 22%; left: 39%; padding: 10px;'></div> 
+    <script>
+      var modal = document.getElementById('myModal');
+      var span = document.getElementsByClassName("close")[0];
+      var map;
+      var praias = <%= raw @listapraias.to_json %>;
+      var leitura = <%= raw @mleis.to_json %>
+      var btn = document.getElementById("myBtn");
+      var btn2 = document.getElementById("myBtn2");
+      var e2 = document.getElementById("iCid");
+      var strUser2 = e2.options[e2.selectedIndex].value;
+      
+      btn.onclick = function() {
+            var e = document.getElementById("iCid");
+            var strUser = e.options[e.selectedIndex].value;
+            var str1 = "Praia: ";
+            var str2 = praias[strUser-1].name;
+            var address = str1.concat(str2);
+            modal.style.display = "block";
+            document.getElementById('info').innerHTML = "<h3>"+address+"<p> "+praias[strUser-1].location+"  </p></h3><p>Temperatura: "+leitura[strUser-1][0].valor+"</p><p>Luminosidade: "+leitura[strUser-1][1].valor+"</p><p>Pressão atmosférica: "+leitura[strUser-1][2].valor+"</p><p>Humidade: "+leitura[strUser-1][3].valor+"</p>";
+            document.getElementById('horadata').innerHTML = "<h2>Data: "+leitura[strUser-1][4]+"</h2><h2>Hora: "+leitura[strUser-1][5]+"</h2>";
+            map.setZoom(18);
+      }
+
+      document.getElementById("fav").setAttribute("value", strUser2);
+
+
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+
+      function initMap() {
+        for (i = 0; i < praias.length; i++) {
+            var str1 = "Praia ";
+            var str2 = praias[i].name;
+            var res = str1.concat(str2);
+            var str3 = ", Portugal";
+            var address = res.concat(str3);
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 4,
+              mapTypeId: google.maps.MapTypeId.TERRAIN,
+            });
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode(
+              {'address': address},
+              function(results, status) {
+                if(status == google.maps.GeocoderStatus.OK) {
+                  marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map
+                  });
+                  map.setCenter(results[0].geometry.location);
+
+                  marker.addListener('click', function() {
+                    map.setZoom(18);
+                    map.setCenter(marker.getPosition());
+                  });
+                }
+              }
+            );
+        }        
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS14c1YniamR3BOq64MotzmtJXQQO0UYY&callback=initMap">
+    </script>
 </div>
